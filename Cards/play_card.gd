@@ -8,16 +8,13 @@ extends MarginContainer
 @onready var points: int;
 @onready var food: Dictionary;
 @onready var habitats: Array = [];
-@onready var nest: NestType;
-
-enum FoodType {RAT, FRUIT, INSECT, GRAIN, FISH, ANY}
-enum Habitat {FOREST, GRASSLANDS, WETLANDS}
-enum NestType {CAVITY, PLATFORM, BOWL, GROUND, ANY, NONE}
+@onready var nest: Enums.NestType;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var filePath = "res://Cards/Collection/" + cardName + ".json"
 	parseData(filePath);
+	setLabels()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,25 +32,27 @@ func parseData(filePath):
 	wingspan = data["wingspan"]
 	parseNest(data["nest"])
 	parseFood(data["food"])
-	print(getFood(FoodType.RAT))
 	
 func parseFood(foodData):
-	for foodType in FoodType:
+	for foodType in Enums.FoodType:
 		var f = foodType.to_lower();
 		if foodData.has(f):
 			food[foodType] = foodData[f]
 	
-func checkIfHasHabitat(habitat: Habitat):
-	var habitatString = Habitat.keys()[habitat].to_pascal_case();
+func checkIfHasHabitat(habitat: Enums.Habitat):
+	var habitatString = Enums.Habitat.keys()[habitat].to_pascal_case();
 	return habitats.has(habitatString);
 	
 func parseNest(nestData):
-	nest = NestType.keys().find(nestData.to_upper());
+	nest = Enums.NestType.keys().find(nestData.to_upper());
 	
-func getFood(foodType: FoodType):
-	var foodString = FoodType.keys()[foodType];
+func getFood(foodType: Enums.FoodType):
+	var foodString = Enums.FoodType.keys()[foodType];
 	if food.has(foodString):
 		return food[foodString];
 	else:
 		return 0
+		
+func setLabels():
+	get_node("NameLabel").text = birdName
 	
