@@ -1,0 +1,13 @@
+{
+	"name": "Common Raven",
+	"latinName": "Corvus corax",
+	"food": {
+		"rat": 1,
+		"any": 2
+	},
+	"habitats": ["Forest", "Grasslands", "Wetlands"],
+	"nest": "Cavity",
+	"points": 5,
+	"wingspan": 135,
+	"eggSpots": 2
+}
