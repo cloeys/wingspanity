@@ -34,6 +34,8 @@ func parseData(filePath):
 	habitats = data["habitats"]
 	wingspan = data["wingspan"]
 	parseNest(data["nest"])
+	parseFood(data["food"])
+	print(getFood(FoodType.RAT))
 	
 func parseFood(foodData):
 	for foodType in FoodType:
@@ -47,5 +49,11 @@ func checkIfHasHabitat(habitat: Habitat):
 	
 func parseNest(nestData):
 	nest = NestType.keys().find(nestData.to_upper());
-	print(nest)
+	
+func getFood(foodType: FoodType):
+	var foodString = FoodType.keys()[foodType];
+	if food.has(foodString):
+		return food[foodString];
+	else:
+		return 0
 	
