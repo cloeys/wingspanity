@@ -1,6 +1,8 @@
 extends MarginContainer
 
 @export var cardName = "CommonRaven";
+
+@onready var birdImage = "res://Assets/Birds/" + cardName + ".jpg"
 @onready var birdName: String;
 @onready var latinName: String;
 @onready var eggSpots: int;
@@ -13,8 +15,15 @@ extends MarginContainer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var filePath = "res://Cards/Collection/" + cardName + ".json"
+	$BirdImage.texture = load(birdImage)
+	$BirdImage.scale = size / $BirdImage.texture.get_size() / 1.5
+#	$BirdImage.offset.x = size.x - $BirdImage.texture.get_size().x / 2
+#	print(size.x - $BirdImage.texture.get_size().x / 2)
+	$BirdImage.offset.x = 50
+	$BirdImage.offset.y = 50
 	parseData(filePath);
 	setLabels()
+	print(birdImage)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,5 +63,5 @@ func getFood(foodType: Enums.FoodType):
 		return 0
 		
 func setLabels():
-	get_node("NameLabel").text = birdName
+	$NameLabel.text = birdName
 	

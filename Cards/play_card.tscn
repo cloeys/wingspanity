@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://db1gph2kp2x85"]
+[gd_scene load_steps=4 format=3 uid="uid://db1gph2kp2x85"]
 
 [ext_resource type="Script" path="res://Cards/play_card.gd" id="1_hceh3"]
 [ext_resource type="Script" path="res://Cards/NameLabel.gd" id="2_2x4l0"]
+[ext_resource type="Texture2D" uid="uid://csah5gd04xl20" path="res://Assets/bg.png" id="3_ikxm3"]
 
 [node name="PlayCard" type="MarginContainer"]
 offset_right = 250.0
@@ -9,7 +10,15 @@ offset_bottom = 350.0
 pivot_offset = Vector2(125, 175)
 script = ExtResource("1_hceh3")
 
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("3_ikxm3")
+centered = false
+
+[node name="BirdImage" type="Sprite2D" parent="."]
+centered = false
+
 [node name="NameLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Bird"
 script = ExtResource("2_2x4l0")
